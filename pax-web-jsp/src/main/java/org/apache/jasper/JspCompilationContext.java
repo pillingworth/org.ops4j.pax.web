@@ -59,6 +59,8 @@ package org.apache.jasper;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.concurrent.ConcurrentHashMap;
@@ -697,7 +699,11 @@ public class JspCompilationContext {
 
     private static final String canonicalURI(String s) 
            throws JasperException {
-       if (s == null) return null;
+        if (s == null)
+            return null;
+        try { // PAXWEB-289
+            return new URI(s).normalize().toString();
+        } catch (URISyntaxException e) {
        StringBuffer result = new StringBuffer();
        final int len = s.length();
        int pos = 0;
@@ -757,6 +763,8 @@ public class JspCompilationContext {
            ++pos;
        }
        return result.toString();
+        }
     }
+    
 }
 

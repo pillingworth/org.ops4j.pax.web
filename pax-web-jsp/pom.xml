@@ -12,6 +12,7 @@
   <groupId>org.ops4j.pax.web</groupId>
   <artifactId>pax-web-jsp</artifactId>
   <packaging>bundle</packaging>
+  <version>1.1.2-saa-1.0.0-SNAPSHOT</version>
 
   <name>OPS4J Pax Web - Jsp Support</name>
   <description>
